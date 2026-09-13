@@ -1,0 +1,55 @@
+body {
+  background-color: white;
+}
+
+#headerDiv {
+  text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 15px;
+}
+
+.location-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0b5cab; /* Blues brand blue */
+  position: relative;
+  bottom: 320px;
+  gap: 30px;
+  color: #ffffff;
+}
+
+.location-text {
+  flex: 1;
+  max-width: 40%;
+}
+
+.location-text h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.location-text .address {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.location-text .description {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.location-map {
+  flex: 1;
+  max-width: 55%;
+}
+
+.location-map iframe {
+  width: 100%;
+  border-radius: 4px; /* Matches rounded corners of embedded frame */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

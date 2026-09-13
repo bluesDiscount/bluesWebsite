@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Quote</title>
+    <link rel="stylesheet" href="bdc.css">
+
+    <style>
+        /* Inline styles can't do media queries, so the mobile breakpoint lives here */
+        @media (max-width: 700px) {
+            #headerDiv { justify-content: center !important; text-align: center !important; }
+            #headerNav { justify-content: center !important; text-align: center !important; }
+            #contactInfo { text-align: center !important; }
+            #communityTitle, #quoteTitle { font-size: 2rem !important; }
+            #formBox { width: 100% !important; margin: 10px 20px 40px !important; }
+            #footerTop { flex-direction: column !important; }
+            #footerBottom { flex-direction: column !important; text-align: center !important; }
+            #footerCredit { text-align: center !important; width: 100% !important; }
+        }
+        @media (max-width: 900px) and (min-width: 701px) {
+            #formBox { width: 70% !important; }
+        }
+    </style>
+</head>
+<body style="
+    background-color: white;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+">
+
+    <!-- Header -->
+    <div id="headerDiv" style="
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        border: 2px solid black;
+        border-radius: 12px;
+        padding: 10px 20px;">
+        <a href="index.html">
+            <img src="bluesLogo.jpg" alt="Blues Logo" style="height: 90px; width: auto; max-width: 100%; cursor: pointer;">
+        </a>
+        <nav id="headerNav" style="
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px 20px;
+            justify-content: flex-end;
+            text-align: right;
+            font-family: sans-serif;">
+            <a href="services.html" style="font-size: 20px; padding: 6px; white-space: nowrap; text-decoration: none;">SERVICES</a>
+            <a href="portfolio.html" style="font-size: 20px; padding: 6px; white-space: nowrap; text-decoration: none;">PORTFOLIO</a>
+            <a href="index.html" style="font-size: 20px; padding: 6px; white-space: nowrap; text-decoration: none;">HOME</a>
+            <span id="contactInfo" style="font-size: 0.85rem; width: 100%; text-align: right;">
+                (334) 544-9752 &nbsp;|&nbsp; (334) 450-9831<br>
+                EMAIL: bluesdiscount@gmail.com
+            </span>
+        </nav>
+    </div>
+
+    <label id="communityTitle" style="
+        font-family: sans-serif;
+        font-size: clamp(1.8rem, 5vw, 50px);
+        text-align: center;
+        display: block;
+        margin: 25px auto 10px;">
+        Serving Your Community
+    </label>
+
+    <p style="
+        font-family: sans-serif;
+        font-size: large;
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 20px;
+        padding: 0 20px;
+        box-sizing: border-box;">
+        We proudly serve individuals and businesses throughout the River Region and surrounding areas.
+        If you're nearby we've got you covered!
+    </p>
+
+    <img src="quote.jpg" alt="Quote Image" style="
+        display: block;
+        margin: 0 auto 20px;
+        width: 100%;
+        height: auto;
+        max-height: 500px;
+        object-fit: cover;
+        max-width: 100%;">
+
+    <label id="quoteTitle" style="
+        font-family: sans-serif;
+        font-size: clamp(1.8rem, 5vw, 50px);
+        text-align: center;
+        display: block;
+        padding: 10px;
+        margin: 10px auto 5px;">
+        Get A Quote
+    </label>
+
+    <p style="
+        font-family: sans-serif;
+        font-size: 20px;
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 20px;
+        padding: 0 20px;
+        box-sizing: border-box;">
+        Enter you home or vehicle information, choose your service type, and we'll get back to you with a quote!
+    </p>
+
+
+    <!-- Main Content Area / Form -->
+    <div id="formBox" style="
+        font-family: sans-serif;
+        border: 2px solid black;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 10px auto 40px;
+        width: 50%;
+        box-sizing: border-box;
+        height: auto;">
+
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <!-- Hidden Access Key from Web3Forms -->
+            <input type="hidden" name="access_key" value="2ccc622b-228e-4d0c-a86b-2cb9d5a42c47">
+
+            <!-- Full Name -->
+            <label style="font-size: 18px;">Full Name*</label><br>
+            <input type="text" name="name" style="width: 100%; box-sizing: border-box;" required><br>
+
+            <!-- Contact Number -->
+            <label style="font-size: 18px;">Contact Number*</label><br>
+            <input type="tel" name="phone" style="width: 100%; box-sizing: border-box;" required><br>
+
+            <!-- Email Address -->
+            <label style="font-size: 18px;">Email Address</label><br>
+            <input type="email" name="email" style="width: 100%; box-sizing: border-box;"><br>
+
+            <!-- Service Type Dropdown with Inline JavaScript -->
+            <label style="font-size: 18px;">Service Type*</label><br>
+            <select name="service_type" style="width: 100%; box-sizing: border-box;" required onchange="
+                const carFields = document.getElementById('carDetails');
+                if (this.value === 'Home/Business Window Replacement') {
+                    carFields.style.display = 'none';
+                } else {
+                    carFields.style.display = 'block';
+                }
+            ">
+                <option value="Home/Business Window Replacement">Home/Business Window Replacement</option>
+                <option value="Rock Chip Repair">Rock Chip Repair</option>
+                <option value="Auto Glass Replacement">Auto Glass Replacement</option>
+                <option value="Power Window Repair">Power Window Repair</option>
+                <option value="Other">Other</option>
+            </select><br>
+
+            <!-- Wrapper Div for Car Fields (Hidden by default since Home/Business is selected first) -->
+            <div id="carDetails" style="display: none;">
+                <!-- Glass Location -->
+                <label style="font-size: 18px;">Glass Location*</label><br>
+                <select name="glass_Location" style="width: 100%; box-sizing: border-box;">
+                    <option value="PlaceHolder"> </option>
+                    <option value="windshield">Windshield</option>
+                    <option value="Back Glass">Back Glass</option>
+                    <option value="Front Driver Side">Front Driver Side</option>
+                    <option value="Rear Driver Side">Rear DriverSide</option>
+                    <option value="Front Passenger Side">Front Passenger Side</option>
+                    <option value="Rear Passenger Side">Rear Passenger Side</option>
+                    <option value="Driver Side Vent">Driver Side Vent</option>
+                    <option value="Passenger Side Vent">Passenger Side Vent</option>
+                    <option value="Driver Side Quarter">Driver Side Quarter</option>
+                    <option value="Passenger Side Quarter">Passenger Side Quarter</option>
+                    <option value="Other">Other</option>
+                </select><br>
+
+                <!-- Year, Make, Model -->
+                <label style="font-size: 18px;">Year</label><br>
+                <input type="text" name="year" style="width: 100%; box-sizing: border-box;"><br>
+
+                <label style="font-size: 18px;">Make</label><br>
+                <input type="text" name="make" style="width: 100%; box-sizing: border-box;"><br>
+
+                <label style="font-size: 18px;">Model</label><br>
+                <input type="text" name="model" style="width: 100%; box-sizing: border-box;"><br>
+
+                <!-- Car Type -->
+                <label style="font-size: 18px;">Car Type</label><br>
+                <select name="car_type" style="width: 100%; box-sizing: border-box;">
+                    <option value=""></option>
+                    <option value="Coupe">Coupe</option>
+                    <option value="Sedan">Sedan</option>
+                </select><br>
+            </div>
+
+            <label style="font-size: 18px;">Additional Information</label><br>
+            <textarea name="additional_info" style="width: 100%; height:100px; box-sizing: border-box;"></textarea><br>
+
+            <!-- Submit Button -->
+            <button type="submit" style="margin-top: 10px; height: 40px; background-color: #0b5cab; color: #ffffff; border: none; cursor: pointer;">Request A Quote</button>
+        </form>
+    </div>
+
+    <!-- Sticky Footer -->
+    <footer style="
+        background-color: #0b5cab;
+        color: #ffffff;
+        padding: 30px 40px 15px 40px;
+        font-family: Arial, sans-serif;
+        box-sizing: border-box;
+        margin-top: auto;
+    ">
+        <!-- Top Section: Hours & Contact Info -->
+        <div id="footerTop" style="
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        ">
+            <!-- Hours Column -->
+            <div style="flex: 1 1 250px; min-width: 250px;">
+                <h2 style="
+                    font-size: 2.2rem;
+                    font-weight: normal;
+                    margin: 0 0 15px 0;
+                ">Hours</h2>
+
+                <table style="
+                    width: 100%;
+                    color: #ffffff;
+                    font-size: 1.4rem;
+                    border-collapse: collapse;
+                    line-height: 1.4;
+                ">
+                    <tr><td style="padding: 1px 0; width: 110px;">Sunday:</td><td>Closed</td></tr>
+                    <tr><td style="padding: 1px 0;">Monday:</td><td>9:00 AM - 5:00 PM</td></tr>
+                    <tr><td style="padding: 1px 0;">Tuesday:</td><td>9:00 AM - 5:00 PM</td></tr>
+                    <tr><td style="padding: 1px 0;">Wednesday:</td><td>9:00 AM - 5:00 PM</td></tr>
+                    <tr><td style="padding: 1px 0;">Thursday:</td><td>9:00 AM - 5:00 PM</td></tr>
+                    <tr><td style="padding: 1px 0;">Friday:</td><td>9:00 AM - 5:00 PM</td></tr>
+                    <tr><td style="padding: 1px 0;">Saturday:</td><td>9:00 AM - 5:00 PM</td></tr>
+                    <tr><td colspan="2" style="padding: 1px 0; white-space: nowrap;">Appointments are preferred</td></tr>
+                </table>
+            </div>
+
+            <!-- Contact Us Column -->
+            <div style="flex: 1 1 280px; min-width: 280px;">
+                <h2 style="
+                    font-size: 2.2rem;
+                    font-weight: normal;
+                    margin: 0 0 15px 0;
+                ">Contact Us</h2>
+
+                <div style="
+                    font-size: 1.4rem;
+                    line-height: 1.5;
+                    margin-bottom: 20px;
+                ">
+                    <div style="display: flex; gap: 20px;">
+                        <span>Phone:</span>
+                        <div>
+                            (334) 544-9752<br>
+                            (334) 450-9831
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 25px; margin-top: 10px;">
+                        <span>Email:</span>
+                        <span>bluesdiscount@gmail.com</span>
+                    </div>
+                </div>
+
+                <!-- Social Media Icons -->
+                <div style="display: flex; gap: 12px; align-items: center;">
+                    <!-- Instagram SVG -->
+                    <a href="#" style="text-decoration: none;" aria-label="Instagram">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+                            <rect width="24" height="24" rx="6" fill="#e1306c"/>
+                            <rect x="5" y="5" width="14" height="14" rx="4" stroke="#ffffff" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="3" stroke="#ffffff" stroke-width="2"/>
+                            <circle cx="15.5" cy="8.5" r="1" fill="#ffffff"/>
+                        </svg>
+                    </a>
+                    <!-- Facebook SVG -->
+                    <a href="#" style="text-decoration: none;" aria-label="Facebook">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="12" fill="#1877f2"/>
+                            <path d="M14 12h-1.5v6h-2.5v-6H8.5V9.5h1.5V8c0-2 1.2-3 3-3h2v2.5h-1c-.8 0-1 .3-1 1v1h2L14 12z" fill="#ffffff"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Copyright Bar -->
+        <div id="footerBottom" style="
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: 15px;
+        ">
+            <img style="height: 20px;" src="bluesLogo.jpg" alt="Blues Logo">
+
+            <div id="footerCredit" style="font-size: 0.7rem; color: #ffffff; text-align: right;">
+                Website by <a href="https://www.linkedin.com/in/carl-hopkins-2a0bb7210" style="color: #ffffff; text-decoration: underline;">Carl R. Hopkins</a><br>
+                <a href="https://www.instagram.com/crhwebdesignsllc?utm_source=qr" style="color: #ffffff; text-decoration: underline;">CRH Web Designs LLC</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
