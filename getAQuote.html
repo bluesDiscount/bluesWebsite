@@ -163,7 +163,14 @@
             <div id="carDetails" style="display: none;">
                 <!-- Glass Location -->
                 <label style="font-size: 18px;">Glass Location*</label><br>
-                <select name="glass_Location" style="width: 100%; box-sizing: border-box;">
+                <select name="glass_Location" style="width: 100%; box-sizing: border-box;" required onchange="
+                    const locationFields = document.getElementById('vinArea' && 'vinAreatxt');
+                    if (this.value !=='windshield') {
+                        vinArea.style.display = 'none';
+                    } else {
+                        vinArea.style.display = 'block';
+                    }
+                    ">
                     <option value="PlaceHolder"> </option>
                     <option value="windshield">Windshield</option>
                     <option value="Back Glass">Back Glass</option>
@@ -178,6 +185,10 @@
                     <option value="Other">Other</option>
                 </select><br>
 
+                <!-- VIN Number -->
+            <label id="vinArea" style="font-size: 18px; display: none;">VIN Number*<br>
+            <input type="text" name="vinNumber" style="width: 100%; box-sizing: border-box;" required><br>
+                </label>
                 <!-- Year, Make, Model -->
                 <label style="font-size: 18px;">Year</label><br>
                 <input type="text" name="year" style="width: 100%; box-sizing: border-box;"><br>
